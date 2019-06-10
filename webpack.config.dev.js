@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 process.env.NODE_ENV = "development";
 
@@ -36,8 +37,14 @@ module.exports = {
         use: ["babel-loader", "eslint-loader"]
       },
       {
-        test: /(\.css)$/,
-        use: ["style-loader", "css-loader"]
+        test: /\.scss$/,
+          use: [{
+            loader: "style-loader"
+          }, {
+            loader: "css-loader" 
+          }, {
+            loader: "sass-loader"
+          }]
       }
     ]
   }
